@@ -24,7 +24,7 @@ public class CustomerController {
     public ResponseEntity<CustomerModel> getById(@RequestParam String id) {
         CustomerModel customer = service.findById(id);
         if (customer == null) {
-            throw new RuntimeException("Id not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(customer);
         }
@@ -34,7 +34,7 @@ public class CustomerController {
     public ResponseEntity<CustomerModel> getByDocument(@RequestParam String document) {
         CustomerModel customer = service.findByDocument(document);
         if (customer == null) {
-            throw new RuntimeException("Document not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(customer);
         }

@@ -25,7 +25,7 @@ public class SellerController {
     public ResponseEntity<SellerModel> getById(@RequestParam String id) {
         SellerModel seller = service.findById(id);
         if (seller == null) {
-            throw new RuntimeException("Id not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(seller);
         }
@@ -35,7 +35,7 @@ public class SellerController {
     public ResponseEntity<SellerModel> getByDocument(@RequestParam String document) {
         SellerModel seller = service.findByDocument(document);
         if (seller == null) {
-            throw new RuntimeException("Document not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(seller);
         }
