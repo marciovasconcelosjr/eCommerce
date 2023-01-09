@@ -40,12 +40,12 @@ public class CustomerController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/registerCustomer")
     private ResponseEntity<CustomerModel> save(@RequestBody CustomerModel customerModel) {
         return ResponseEntity.ok(service.register(customerModel));
     }
 
-    @PutMapping
+    @PutMapping("/updateCustomer")
     private ResponseEntity<CustomerModel> updated(@RequestParam String id, @RequestBody CustomerModel customer) {
         return ResponseEntity.ok(service.update(id, customer));
     }

@@ -4,13 +4,17 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("customers")
+@Document("seller")
 @Data
-public class CustomerModel {
+public class SellerModel {
 
     @Id
     private String id;
+
     private String name;
+
     private String document;
+
     private String email;
+
 }
