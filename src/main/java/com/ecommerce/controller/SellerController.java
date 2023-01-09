@@ -25,29 +25,29 @@ public class SellerController {
     public ResponseEntity<SellerModel> getById(@RequestParam String id) {
         SellerModel seller = service.findById(id);
         if (seller == null) {
-            throw new RuntimeException("Id not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(seller);
         }
     }
 
     @GetMapping("/searchByDocument")
-    private ResponseEntity<SellerModel> getByDocument(@RequestParam String document) {
+    public ResponseEntity<SellerModel> getByDocument(@RequestParam String document) {
         SellerModel seller = service.findByDocument(document);
         if (seller == null) {
-            throw new RuntimeException("Document not found");
+            return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(seller);
         }
     }
 
     @PostMapping("/registerCustomer")
-    private ResponseEntity<SellerModel> save(@RequestBody SellerModel sellerModel) {
+    public ResponseEntity<SellerModel> save(@RequestBody SellerModel sellerModel) {
         return ResponseEntity.ok(service.register(sellerModel));
     }
 
     @PutMapping("/updateCustomer")
-    private ResponseEntity<SellerModel> updated(@RequestParam String id, @RequestBody SellerModel seller) {
+    public ResponseEntity<SellerModel> updated(@RequestParam String id, @RequestBody SellerModel seller) {
         return ResponseEntity.ok(service.update(id, seller));
     }
 }
