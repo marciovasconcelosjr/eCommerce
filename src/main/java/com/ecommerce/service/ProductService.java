@@ -29,14 +29,6 @@ public class ProductService {
         return productRepository.findByPriceAsc();
     }
 
-    public ProductModel register(ProductModel productModel, String sellerId) {
-        Optional<SellerModel> productSeller = sellerRepository.findById(sellerId);
-        if(productSeller.isEmpty()){
-            return null;
-        }
-        return productRepository.save(productModel);
-    }
-
     public List<ProductModel> findByCategory(String category) {
         return productRepository.findByCategory(category);
     }
@@ -53,6 +45,13 @@ public class ProductService {
         return productModelOpt.get();
     }
 
+    public ProductModel register(ProductModel productModel, String sellerId) {
+        Optional<SellerModel> productSeller = sellerRepository.findById(sellerId);
+        if(productSeller.isEmpty()){
+            return null;
+        }
+        return productRepository.save(productModel);
+    }
     public ProductModel update(String id, ProductModel product) {
         ProductModel productDb = findById(id);
         Optional<SellerModel> productSeller = sellerRepository.findById(product.getSellerId());
