@@ -4,10 +4,7 @@ import com.ecommerce.model.ProductModel;
 import com.ecommerce.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,40 @@ public class ProductController {
         } else {
             return ResponseEntity.ok(product);
         }
+    }
+
+    @GetMapping("/searchByCategory")
+    public ResponseEntity<List<ProductModel>> getByCategory(@RequestParam String category){
+        List<ProductModel> products = service.findByCategory(category);
+        if( products.isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(products);
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductModel>> searchProduct(@RequestParam String search){
+        List<ProductModel> products = service.findByNameLike(search);
+        if( products.isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(products);
+        }
+    }
+
+    @PostMapping("/registerProduct")
+    public ResponseEntity<ProductModel> registerProduct(@RequestBody ProductModel productModel, @RequestParam String sellerId){
+        return ResponseEntity.ok(service.register(productModel, sellerId));
+    }
+
+    @PutMapping("/updateCustomer")
+    public ResponseEntity<ProductModel> update(@RequestParam String sellerId, @RequestBody ProductModel productModel) {
+        return ResponseEntity.ok(service.update(sellerId, productModel));
+    }
+
+    @DeleteMapping("/deleteProduct")
+    public ResponseEntity delete(@RequestParam String productId){
+        return (ResponseEntity) ResponseEntity.ok();
     }
 }

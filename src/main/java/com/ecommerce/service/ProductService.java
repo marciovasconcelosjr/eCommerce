@@ -62,4 +62,12 @@ public class ProductService {
         }
     }
 
+    public void deleteProduct(String id){
+        ProductModel product = findById(id);
+        if( product == null){
+            throw new RuntimeException("Id must exist");
+        }
+        productRepository.deleteById(id);
+    }
+
 }
