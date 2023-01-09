@@ -29,7 +29,7 @@ public class OrderService {
     }
 
     public OrderModel registerOrder(OrderModel orderModel) {
-        CustomerModel customer = customerService.findById(orderModel.getCostumerId());
+        CustomerModel customer = customerService.findById(orderModel.getCustomer().getId());
         if(customer == null) {
             throw new RuntimeException("Customer id not exists");
         }

@@ -17,12 +17,12 @@ public class SellerController {
     private final SellerService service;
 
     @GetMapping
-    private ResponseEntity<List<SellerModel>> getAll() {
+    public ResponseEntity<List<SellerModel>> getAll() {
         return ResponseEntity.ok(service.listAll());
     }
 
     @GetMapping("/searchbyid")
-    private ResponseEntity<SellerModel> getById(@RequestParam String id) {
+    public ResponseEntity<SellerModel> getById(@RequestParam String id) {
         SellerModel seller = service.findById(id);
         if (seller == null) {
             throw new RuntimeException("Id not found");
