@@ -41,12 +41,12 @@ public class SellerController {
         }
     }
 
-    @PostMapping("/registerCustomer")
+    @PostMapping("/registerSeller")
     public ResponseEntity<SellerModel> save(@RequestBody SellerModel sellerModel) {
         return ResponseEntity.ok(service.register(sellerModel));
     }
 
-    @PutMapping("/updateCustomer")
+    @PutMapping("/updateSeller")
     public ResponseEntity<SellerModel> updated(@RequestParam Long id, @RequestBody SellerModel seller) {
         return ResponseEntity.ok(service.update(id, seller));
     }

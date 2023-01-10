@@ -65,7 +65,7 @@ public class ProductController {
         return ResponseEntity.ok(service.register(productModel, sellerId));
     }
 
-    @PutMapping("/updateCustomer")
+    @PutMapping("/updateProduct")
     public ResponseEntity<ProductModel> update(@RequestParam Long sellerId, @RequestBody ProductModel productModel) {
         return ResponseEntity.ok(service.update(sellerId, productModel));
     }
