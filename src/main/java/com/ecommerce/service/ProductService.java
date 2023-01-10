@@ -22,37 +22,38 @@ public class ProductService {
     }
 
     public List<ProductModel> listAllPriceDesc() {
-        return productRepository.findByPriceDesc();
+        return null;
     }
 
     public List<ProductModel> listAllPriceAsc() {
-        return productRepository.findByPriceAsc();
+        return null;
     }
 
     public List<ProductModel> findByCategory(String category) {
         return productRepository.findByCategory(category);
     }
 
-    public List<ProductModel> findByNameLike(String search){
-        return productRepository.findByNameLike(search);
+    public List<ProductModel> findByNameLike(String search) {
+        return null;
     }
 
-    public ProductModel findById(String id) {
+    public ProductModel findById(Long id) {
         Optional<ProductModel> productModelOpt = productRepository.findById(id);
-        if(productModelOpt.isEmpty()) {
+        if (productModelOpt.isEmpty()) {
             return null;
         }
         return productModelOpt.get();
     }
 
-    public ProductModel register(ProductModel productModel, String sellerId) {
+    public ProductModel register(ProductModel productModel, Long sellerId) {
         Optional<SellerModel> productSeller = sellerRepository.findById(sellerId);
-        if(productSeller.isEmpty()){
+        if (productSeller.isEmpty()) {
             return null;
         }
         return productRepository.save(productModel);
     }
-    public ProductModel update(String id, ProductModel product) {
+
+    public ProductModel update(Long id, ProductModel product) {
         ProductModel productDb = findById(id);
         Optional<SellerModel> productSeller = sellerRepository.findById(product.getSellerId());
         if (!productDb.getId().equals(product.getId()) && !productSeller.isEmpty()) {
@@ -62,9 +63,9 @@ public class ProductService {
         }
     }
 
-    public void deleteProduct(String id){
+    public void deleteProduct(Long id) {
         ProductModel product = findById(id);
-        if( product == null){
+        if (product == null) {
             throw new RuntimeException("Id must exist");
         }
         productRepository.deleteById(id);

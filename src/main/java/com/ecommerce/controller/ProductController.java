@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/searchbyid")
-    public ResponseEntity<ProductModel> getById(@RequestParam String id){
+    public ResponseEntity<ProductModel> getById(@RequestParam Long id){
         ProductModel product = service.findById(id);
         if( product == null){
             return ResponseEntity.notFound().build();
@@ -61,17 +61,17 @@ public class ProductController {
     }
 
     @PostMapping("/registerProduct")
-    public ResponseEntity<ProductModel> registerProduct(@RequestBody ProductModel productModel, @RequestParam String sellerId){
+    public ResponseEntity<ProductModel> registerProduct(@RequestBody ProductModel productModel, @RequestParam Long sellerId){
         return ResponseEntity.ok(service.register(productModel, sellerId));
     }
 
     @PutMapping("/updateCustomer")
-    public ResponseEntity<ProductModel> update(@RequestParam String sellerId, @RequestBody ProductModel productModel) {
+    public ResponseEntity<ProductModel> update(@RequestParam Long sellerId, @RequestBody ProductModel productModel) {
         return ResponseEntity.ok(service.update(sellerId, productModel));
     }
 
     @DeleteMapping("/deleteProduct")
-    public ResponseEntity delete(@RequestParam String productId){
+    public ResponseEntity delete(@RequestParam Long productId){
         return (ResponseEntity) ResponseEntity.ok();
     }
 }

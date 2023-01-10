@@ -20,7 +20,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public OrderModel findById(String id) {
+    public OrderModel findById(Long id) {
         Optional<OrderModel> orderOpt = orderRepository.findById(id);
         if (orderOpt.isPresent()) {
             return orderOpt.get();
@@ -29,7 +29,7 @@ public class OrderService {
     }
 
     public OrderModel registerOrder(OrderModel orderModel) {
-        CustomerModel customer = customerService.findById(orderModel.getCustomer().getId());
+        CustomerModel customer = customerService.findById(orderModel.getCustomer());
         if(customer == null) {
             throw new RuntimeException("Customer id not exists");
         }

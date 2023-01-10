@@ -26,7 +26,7 @@ public class CustomerService {
         return repository.findByDocument(document);
     }
 
-    public CustomerModel findById(String id) {
+    public CustomerModel findById(Long id) {
         Optional<CustomerModel> customerModelOpt = repository.findById(id);
         if(customerModelOpt.isEmpty()) {
             return null;
@@ -34,7 +34,7 @@ public class CustomerService {
         return customerModelOpt.get();
     }
 
-    public CustomerModel update(String id, CustomerModel customer) {
+    public CustomerModel update(Long id, CustomerModel customer) {
         CustomerModel customerDb = findById(id);
         if (!customerDb.getId().equals(customer.getId())) {
             throw new RuntimeException("Id must be equals");

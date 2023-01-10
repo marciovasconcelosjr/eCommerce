@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping("/searchbyid")
-    public ResponseEntity<CustomerModel> getById(@RequestParam String id) {
+    public ResponseEntity<CustomerModel> getById(@RequestParam Long id) {
         CustomerModel customer = service.findById(id);
         if (customer == null) {
             return ResponseEntity.notFound().build();
@@ -46,7 +46,7 @@ public class CustomerController {
     }
 
     @PutMapping("/updateCustomer")
-    public ResponseEntity<CustomerModel> updated(@RequestParam String id, @RequestBody CustomerModel customer) {
+    public ResponseEntity<CustomerModel> updated(@RequestParam Long id, @RequestBody CustomerModel customer) {
         return ResponseEntity.ok(service.update(id, customer));
     }
 

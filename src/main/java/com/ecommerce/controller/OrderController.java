@@ -20,7 +20,7 @@ public class OrderController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<OrderModel> findById(@RequestParam String orderId) {
+    public ResponseEntity<OrderModel> findById(@RequestParam Long orderId) {
         OrderModel order = orderService.findById(orderId);
         if (order == null) {
             return ResponseEntity.notFound().build();
@@ -31,5 +31,6 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrderModel> register(@RequestBody OrderModel orderModel) {
         return ResponseEntity.ok(orderService.registerOrder(orderModel));
+
     }
 }

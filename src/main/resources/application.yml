@@ -1,8 +1,18 @@
+server:
+  error:
+    include-stacktrace: on_param
+
 spring:
-  data:
-    mongodb:
-      uri: mongodb://root:root@localhost:27017/
-      database: ecommerce
-      username: root
-      password: root
-      auto-index-creation: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce?&createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

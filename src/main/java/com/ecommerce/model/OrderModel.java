@@ -1,18 +1,19 @@
 package com.ecommerce.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.util.Map;
 
 @Data
-@Document("orders")
+@Entity(name = "orders")
 public class OrderModel {
     @Id
-    private String orderId;
-    private CustomerModel customer;
-    private Map<ProductModel, Integer> products;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
+
+    private Long customer;
+
+    private String products;
     private String status;
 }

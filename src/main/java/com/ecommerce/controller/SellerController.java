@@ -22,7 +22,7 @@ public class SellerController {
     }
 
     @GetMapping("/searchbyid")
-    public ResponseEntity<SellerModel> getById(@RequestParam String id) {
+    public ResponseEntity<SellerModel> getById(@RequestParam Long id) {
         SellerModel seller = service.findById(id);
         if (seller == null) {
             return ResponseEntity.notFound().build();
@@ -47,7 +47,7 @@ public class SellerController {
     }
 
     @PutMapping("/updateCustomer")
-    public ResponseEntity<SellerModel> updated(@RequestParam String id, @RequestBody SellerModel seller) {
+    public ResponseEntity<SellerModel> updated(@RequestParam Long id, @RequestBody SellerModel seller) {
         return ResponseEntity.ok(service.update(id, seller));
     }
 }

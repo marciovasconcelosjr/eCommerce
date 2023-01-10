@@ -27,7 +27,7 @@ public class SellerService {
         return repository.findByDocument(document);
     }
 
-    public SellerModel findById(String id) {
+    public SellerModel findById(Long id) {
         Optional<SellerModel> sellerModelOpt = repository.findById(id);
         if(sellerModelOpt.isEmpty()) {
             return null;
@@ -35,7 +35,7 @@ public class SellerService {
         return sellerModelOpt.get();
     }
 
-    public SellerModel update(String id, SellerModel seller) {
+    public SellerModel update(Long id, SellerModel seller) {
         SellerModel sellerDb = findById(id);
         if (!sellerDb.getId().equals(seller.getId())) {
             throw new RuntimeException("Id must be equals");
